@@ -1,8 +1,0 @@
-Implement user registration
-Implement user login
-Implement user page permission fo each user
-	May need to implement one-to-one relationship 
-	Or make a Foreign-Key
-
-
-Need to add welcome page
