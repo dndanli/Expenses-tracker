@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from register import views as register_view
 from home import views as home_view
+from tracker import views as tracker_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +27,6 @@ urlpatterns = [
 
     # login path is already pre-defined by django so no need to define it 
     path('', include('django.contrib.auth.urls')),
+
+    path('userhome/',tracker_view.tracker, name="trackerpage")
 ]
