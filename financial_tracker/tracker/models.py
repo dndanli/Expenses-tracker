@@ -11,7 +11,7 @@ class FinancialTracker(models.Model):
 class TrackerItem(models.Model):
     """A representation of each item in the tracker"""
     # the tracker
-    tracker = models.ForeignKey(FinancialTracker, on_delete= models.CASCADE)
+    tracker = models.ForeignKey(FinancialTracker, on_delete=models.CASCADE)
 
     # payment title
     pay_title = models.CharField(max_length=25)
@@ -24,3 +24,8 @@ class TrackerItem(models.Model):
 
     # brief description of a payment
     pay_description = models.CharField(max_length=100)
+
+
+    def __str__(self):
+        return (f"title: {self.pay_title} | amount: {self.pay_amt} | "
+                f"type: {self.pay_type} | description: {self.pay_description}")
