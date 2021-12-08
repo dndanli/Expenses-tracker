@@ -3,9 +3,6 @@ from django.shortcuts import render, redirect
 from . forms import RegistrationForm
 
 
-def home(request):
-    return render(request, "index.html", {})
-
 def registerUser(response):
     # if there is a post request and form is valid
     if response.method == "POST":
