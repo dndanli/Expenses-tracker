@@ -7,6 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    This is the tracker page
+    {% if user.is_authenticated %}
+        <div>This is the tracker page</div>
+    {% else %}
+        <p>Please Login <a href="/login">here</a> </p>
+    {% endif %}
 </body>
 </html>
