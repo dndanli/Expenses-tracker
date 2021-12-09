@@ -1,8 +1,10 @@
 from django.shortcuts import render
-from .models import FinancialTracker, TrackerItem
-from .forms import CreateNewTracker
+from .models import FinancialTracker
+from .forms import CreateNewTrackerForm
+from django.http import HttpResponseRedirect
 
-def userTracker(response, id):
+
+def save_user_tracker_items(response, id):
     ft = FinancialTracker.objects.get(id=id)
 
     if response.method == "POST":
@@ -20,17 +22,19 @@ def userTracker(response, id):
     return render(response, "tracker/user-tracker.html", {"ft":ft})
 
 
-def create(response):
+def create_tracker(response):
     # for post methods
     if response.method == "POST":
-        form = CreateNewTracker(response.POST)
+        form = CreateNewTrackerForm(response.POST)
 
         if form.is_valid():            
             new_tracker_name = form.cleaned_data["name"]
             new_financial_tracker = FinancialTracker(tracker_name = new_tracker_name)
             new_financial_tracker.save()
+
+        return HttpResponseRedirect("/userhome/%i" %new_financial_tracker.id)
     else:
         # if get the just create the new tracker
-        form = CreateNewTracker()
+        form = CreateNewTrackerForm()
         
     return render(response, "tracker/create.html", {"form":form})

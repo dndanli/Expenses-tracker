@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class FinancialTracker(models.Model):
     """The Financial Tracker"""
     tracker_name = models.CharField(max_length=30)

@@ -1,6 +1,6 @@
-from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from . forms import RegistrationForm
+from django.http import HttpResponseRedirect
 
 
 def registerUser(response):
@@ -10,11 +10,11 @@ def registerUser(response):
         if form.is_valid():
             # save the form
             form.save()
-
-        # return(redirect(''))
+        
+        # redirect user to login page once they're signed-up
+        return HttpResponseRedirect('/login/')
     else:
         #otherwise create a blank form
         form = RegistrationForm()
 
     return render(response, "register/signup.html", {"form":form}, )
-    

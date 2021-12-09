@@ -1,5 +1,6 @@
 from django import forms
 
 
-class CreateNewTracker(forms.Form):
+class CreateNewTrackerForm(forms.Form):
+    """Create new tracker form"""
     name = forms.CharField(label="Name", max_length=200)
