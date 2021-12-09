@@ -1,7 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 class FinancialTracker(models.Model):
     """The Financial Tracker"""
+    tracker_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="financialtracker",null=True)
     tracker_name = models.CharField(max_length=30)
 
     def __str__(self):
