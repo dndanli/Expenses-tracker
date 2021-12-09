@@ -4,6 +4,19 @@ from .forms import CreateNewTracker
 
 def userTracker(response, id):
     ft = FinancialTracker.objects.get(id=id)
+
+    if response.method == "POST":
+        if response.POST.get("new-payment"):
+
+            # get all inputs
+            new_pay_title = response.POST.get("pay-title")
+            new_pay_amount=response.POST.get("pay-amt")
+            new_pay_type =response.POST.get("pay-type")
+            new_pay_description=response.POST.get("pay-desc")
+            
+            ft.trackeritem_set.create(
+                pay_title=new_pay_title, pay_amt=new_pay_amount, pay_type=new_pay_type, pay_description=new_pay_description
+            )
     return render(response, "tracker/user-tracker.html", {"ft":ft})
 
 
