@@ -24,11 +24,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view.home, name="welcome"), 
     path("signup/", register_view.registerUser, name="signup"),
-
     # login path is already pre-defined by django so no need to define it 
     path('', include('django.contrib.auth.urls')),
-
-    path('userhome/',tracker_view.tracker, name="trackerpage"),
-    path('<int:id>', tracker_view.foo, name="foo"),
+    # the page displayed when user logs in
+    path('userhome/<int:id>',tracker_view.userTracker, name="trackerpage"),
+    path('createtracker/',tracker_view.create, name="create"),
 
 ]
