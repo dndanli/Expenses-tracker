@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-widthni, initial-scale=1.0">
-    <title>Document</title>    
+    <title>Document</title>  
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">  
 </head>
 <body>
-    <h3>Sign-in here</h3>
-    <form method="POST" class="form-group">
-        {% csrf_token %}
-        {{form}}
-        <button type="submit" class="btn btn-success">Sign in</button>
-        <p>Not registered yet? click <a href="/signup">here</a> to make an account </p>
-    </form>    
+    <div class="container">
+        <h3 class="login-header">Sign-in here</h3>
+        <form method="POST" class="form-group">
+            {% csrf_token %}
+            {{form}}
+            <div type="submit" class="btn login">Sign in</div>
+            <p class="not-registered">Not registered yet? click <a href="/signup">here</a> to make an account </p>
+        </form> 
+    </div>   
 </body>
 </html>
