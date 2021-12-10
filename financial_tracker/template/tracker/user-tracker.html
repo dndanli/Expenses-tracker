@@ -16,8 +16,6 @@
     <!-- client side auth -->
     <!-- let users view their tracker if they're authenticated and logged-in  -->
     {% if user.is_authenticated %}
-
-        <div>Please create a <a href="/createtracker">tracker</a> if you have not done so.</div>
         <h2>Add new payment</h2>
         {%load crispy_forms_tags%}
         <div>
