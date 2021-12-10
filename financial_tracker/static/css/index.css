@@ -2,9 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
 :root{
-    --bg-color-primary:#47b9e8;
+    --bg-color-primary:#30e3ca;
     --text-color-primary:rgb(255, 254, 252);
-    --text-color-secondary:rgb(255, 254, 252);
+    --text-color-secondary: #1c1c1f;
 }
 
 /* reset*/
@@ -15,12 +15,13 @@
 }
 
 body{
-    background-color:  #c8c8c8;
+    background-color: #ffffff;
+    background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
 }
 
 .container{
     font-family: Montserrat,sans-serif ;
-    background-color: #1c1c1f;
+    background:rgb(255, 254, 252);
     padding: 5rem 10rem 5rem 10rem;
     margin:0 14rem 0 14rem;
     display: flex;
@@ -38,7 +39,7 @@ body{
     color: var(--bg-color-primary);
 }
 .logo-sub{
-    color: var(--text-color-primary);
+    color: var(--text-color-secondary);
 }
 
 .hero-primary-info{
@@ -53,7 +54,7 @@ body{
 }
 
 .hero-secondary-info{
-    color: rgb(224, 222, 215);
+    color: var(--text-color-secondary);
     font-size: 1rem;
 }
 
@@ -72,6 +73,7 @@ body{
     width: 110px;
     height: 55px;
     cursor: pointer;
+    color: var(--text-color-primary);
 }
 
 .btn a{
@@ -82,4 +84,39 @@ body{
 .home-img{
     width: 40rem;
     height: 40rem;
+}
+
+/* sign-up page section */
+.sign-up-container{
+    font-family: Montserrat,sans-serif ;
+    font-size: 1.5rem;
+    background-color:rgb(255, 254, 252);
+    color: var(--text-color-secondary);
+    padding: 5rem 10rem 5rem 10rem;
+    margin: 0 14rem 0 14rem;
+}
+
+.sign-up-container, form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+form > input{
+    width: 20rem;
+    height: 2rem;
+    margin-top: 1.5rem;
+}
+
+.helptext{
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+}
+
+.helptext li {
+    margin-bottom: 1.3rem;
+}
+
+.sign{
+    margin-left: -.1rem;
 }
