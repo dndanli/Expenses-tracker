@@ -1,0 +1,85 @@
+/* fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+:root{
+    --bg-color-primary:#47b9e8;
+    --text-color-primary:rgb(255, 254, 252);
+    --text-color-secondary:rgb(255, 254, 252);
+}
+
+/* reset*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color:  #c8c8c8;
+}
+
+.container{
+    font-family: Montserrat,sans-serif ;
+    background-color: #1c1c1f;
+    padding: 5rem 10rem 5rem 10rem;
+    margin: 5rem 14rem 5rem 14rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50%;
+}
+
+.container > div{
+    margin-top: 4rem;
+}
+
+.logo{
+    font-size: 3rem;
+    color: var(--bg-color-primary);
+}
+.logo-sub{
+    color: var(--text-color-primary);
+}
+
+.hero-primary-info{
+    font-size: 1.8rem;
+    overflow-wrap: break-word;
+    color: var(--text-color-secondary);
+}
+
+.hero-second{
+    display: flex;
+    justify-content: center;
+}
+
+.hero-secondary-info{
+    color: rgb(224, 222, 215);
+    font-size: 1rem;
+}
+
+.get-started{
+    display: flex;
+}
+
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    background-color: var(--bg-color-primary);
+    border-radius: .6rem;
+    margin: 0 2rem 0 2rem ;
+    width: 110px;
+    height: 55px;
+    cursor: pointer;
+}
+
+.btn a{
+    text-decoration: none;
+    color: var(--text-color-primary);
+}
+
+.home-img{
+    width: 40rem;
+    height: 40rem;
+}
