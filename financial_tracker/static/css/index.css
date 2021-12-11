@@ -187,3 +187,31 @@ form > input{
     margin-top: 2rem;
     margin-left: .5rem;    
 }
+
+.user-tracker-container{
+    font-family: Montserrat,sans-serif ;
+    background: rgb(255, 254, 252);
+    padding: 5rem 10rem 5rem 10rem;
+    margin:0 14rem 0 14rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.user-tracker-container, textarea{
+    margin-top: 2rem;
+}
+
+.add{
+    margin-top: 2rem;
+    margin-left: .5rem;
+}
+.info-check{
+    margin-bottom: 2rem;
+}
+ 
+.table-info{
+    font-family: Montserrat,sans-serif;
+    display: flex;
+    /* background-color: lightcoral; */
+} 

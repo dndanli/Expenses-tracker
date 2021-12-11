@@ -5,8 +5,7 @@ from django.http import HttpResponseRedirect
 
 
 def save_user_tracker_items(response, id):
-    ft = FinancialTracker.objects.get(id=id)
-    
+    ft = FinancialTracker.objects.get(id=id)    
     if ft in response.user.financialtracker.all():
         if response.method == "POST":
             if response.POST.get("new-payment"):
@@ -21,7 +20,6 @@ def save_user_tracker_items(response, id):
                     pay_title=new_pay_title, pay_amt=new_pay_amount, pay_type=new_pay_type, pay_description=new_pay_description
                 )
         return render(response, "tracker/user-tracker.html", {"ft":ft})
-
     return render(response, "tracker/tracker_views.html", {})
 
 

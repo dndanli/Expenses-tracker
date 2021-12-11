@@ -9,12 +9,14 @@
     <!-- loading static resources -->
     {% load static %}
     <script src="{% static 'js/redirect.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">  
 </head>
 <body>
 
     <!-- client side auth -->
     <!-- let users view their tracker if they're authenticated and logged-in  -->
     {% if user.is_authenticated %}
+    <div class="user-tracker-container">
         <h2>Add new payment</h2>
         <div>
             <form method="POST">
@@ -32,23 +34,34 @@
                 <label for="pay-desc" value="pay-desc">add description</label>
                 <textarea name="pay-desc" id="pay-desc" cols="30" rows="5"></textarea>
 
-                <button type="submit" name="new-payment" value="new-payment" class="btn btn-success">Add payment</button>
+                <button type="submit" name="new-payment" value="new-payment" class="btn add">Add payment</button>
             </form>
         </div>
         <br><br>
-        <h2>Check your tracker info</h2>
+        <h2 class="info-check">Check your tracker info</h2>
         {% block content %}
-        {{ft.tracker_name}}
-        <ul>
-            {% for item in ft.trackeritem_set.all%}
-                <li>{{item.pay_title}}</li>
-                <li>{{item.pay_amt}}</li>
-                <li>{{item.pay_type}}</li>
-                <li>{{item.pay_description}}</li>
-            {% endfor %}
-        </ul>
+        <h1>{{ft.tracker_name}}</h1>
+
+        <div class="table-info">
+            <table border="1" cellpadding="10" cellspacing="15">
+                <tr>
+                    <th>pay title</th>
+                    <th>pay amount</th>
+                    <th>pay type</th>
+                    <th>pay description</th>
+                </tr>
+                {% for item in ft.trackeritem_set.all%}
+                    <tr>
+                        <td>{{item.pay_title}}</td>
+                        <td>{{item.pay_amt}}</td>
+                        <td>{{item.pay_type}}</td>
+                        <td>{{item.pay_description}}</td>
+                    </tr>
+                {% endfor %}    
+            </table>
+        </div>
         {% endblock %}
-        
+    </div>
     <!-- else redirect user to login page -->
     {% else %}
         <script>
