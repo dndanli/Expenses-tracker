@@ -5,16 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">  
 </head>
 <body>
     {% if user.is_authenticated %}
-        {% block title %} Create new tracker {% endblock%}
-        <form method="POST" class="form-group">
-            {% csrf_token %}
-            {{form}}
-            <button type="submit" class="btn btn-success">Create</button>
-        </form>
+        <div class="create-container">
+            <h1>Create Tracker</h1>
+            <form method="POST" class="form-group">
+                {% csrf_token %}
+                {{form}}
+                <button type="submit" class="btn create">Create</button>
+            </form>
+        </div>
     {% else %}
         <script>
             redirect('/login');    
