@@ -7,17 +7,24 @@
     <title>Tracker views</title>
     {% load static %}
     <script src="{% static 'js/redirect.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">  
 </head>
 <body>
     {% if user.is_authenticated %}
-    <div>Please create a <a href="/createtracker">tracker</a> if you have not done so.</div>
-        {% block content %}
-            {% for tracker in user.financialtracker.all %}
-                <p><a href="/userhome/{{tracker.id}}">{{tracker.tracker_name}}</a></p>
-            {% endfor %}
-        {% endblock %}
+    <div class="tracker-view-container">
+        <h2>Please create a <a href="/createtracker">tracker</a>     if you have not done so.</h2>
+            {% block content %}
+                {% for tracker in user.financialtracker.all %}
+                <ul>
+                    <h2 class="tracker-name"><a href="/userhome/{{tracker.id}}">{{tracker.tracker_name}}</a></h2>
+                </ul>
+                {% endfor %}
+            {% endblock %}
+    </div>
     {% else %}
-        <p>Please Login <a href="/login">here</a> </p>
+        <script>
+            redirect('/login');
+        </script>
     {% endif %}
 </body>
 </html>
