@@ -18,8 +18,7 @@ class TrackerItem(models.Model):
     # payment title
     pay_title = models.CharField(max_length=25)
 
-    # TODO: fix decimal places and max digits formatting.
-    pay_amt = models.DecimalField(max_digits=19, decimal_places=10)
+    pay_amt = models.DecimalField(max_digits=6, decimal_places=2)
 
     # type of payment made
     pay_type = models.CharField(max_length=25)
