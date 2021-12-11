@@ -202,7 +202,7 @@ form > input{
     margin-top: 2rem;
 }
 
-.add{
+.add, .views{
     margin-top: 2rem;
     margin-left: .5rem;
 }
@@ -212,6 +212,5 @@ form > input{
  
 .table-info{
     font-family: Montserrat,sans-serif;
-    display: flex;
-    /* background-color: lightcoral; */
 } 
+
