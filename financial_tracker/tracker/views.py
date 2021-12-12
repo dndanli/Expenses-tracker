@@ -23,23 +23,34 @@ def save_user_tracker_items(response, id):
     return render(response, "tracker/tracker_views.html", {})
 
 
-def create_tracker(response):
-    # for post methods
-    if response.method == "POST":
-        form = CreateNewTrackerForm(response.POST)
-
-        if form.is_valid():            
-            new_tracker_name = form.cleaned_data["name"]
-            new_financial_tracker = FinancialTracker(tracker_name = new_tracker_name)
-            new_financial_tracker.save()
-            response.user.financialtracker.add(new_financial_tracker)        
-
-        return HttpResponseRedirect("/userhome/%i" %new_financial_tracker.id)
+def create_tracker(response, id):
+    
+    if FinancialTracker.objects.filter(tracker_user_id=id).exists():
+        """ user cannot create more trackers"""
+        return HttpResponseRedirect("/trackerviews/")
     else:
-        # if get the just create the new tracker
-        form = CreateNewTrackerForm()
-        
-    return render(response, "tracker/create.html", {"form":form})
+        if response.method == "POST":
+            form = CreateNewTrackerForm(response.POST)
 
-def view_trackers(response):
-    return render(response, "tracker/tracker_views.html", {})
+            if form.is_valid():            
+                new_tracker_name = form.cleaned_data["name"]
+                new_financial_tracker = FinancialTracker(tracker_name = new_tracker_name)
+                new_financial_tracker.save()
+                response.user.financialtracker.add(new_financial_tracker)        
+
+            return HttpResponseRedirect("/userhome/%i" %new_financial_tracker.id)
+        else:
+            # if get the just create the new tracker
+            form = CreateNewTrackerForm()
+        return render(response, "tracker/create.html", {"form":form})    
+
+
+
+def view_trackers(request):
+    current_user = request.user
+
+    context = {
+        "id":current_user.id
+    }
+    
+    return render(request, "tracker/tracker_views.html",context)

@@ -12,7 +12,7 @@
 <body>
     {% if user.is_authenticated %}
     <div class="tracker-view-container">
-        <h2>Please create a <a href="/createtracker">tracker</a>     if you have not done so.</h2>
+        <h2>Please create a <a href="/createtracker/{{id}}">tracker</a> if you have not done so.</h2>
             {% block content %}
                 {% for tracker in user.financialtracker.all %}
                 <ul>

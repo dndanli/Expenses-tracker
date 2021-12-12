@@ -30,7 +30,7 @@ urlpatterns = [
     
     # the page displayed when user logs in
     path('userhome/<int:id>',tracker_view.save_user_tracker_items, name="trackerpage"),
-    path('createtracker/',tracker_view.create_tracker, name="create"),
+    path('createtracker/<int:id>',tracker_view.create_tracker, name="create"),
     path('trackerviews/',tracker_view.view_trackers, name="view"),
 
 ]
