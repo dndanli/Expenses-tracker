@@ -45,21 +45,34 @@ def create_tracker(response, id):
         return render(response, "tracker/create.html", {"form":form})    
 
 
-def view_trackers(request):
-    current_user = request.user
-    ft = FinancialTracker.objects.get(id=current_user.id)    
-    
-    total_spent = get_total_spent_info(request)
-
-    context = {
-        "id":current_user.id,
-        "ft":ft,
-        "totalspent":total_spent
-    }
-    
-    return render(request, "tracker/tracker_views.html", context)
-
 
 def get_total_spent_info(request):
     current_user = request.user
     return calculate_total_spent(current_user.id)
+
+
+def view_trackers(request):
+    current_user = request.user
+
+    total_spent = get_total_spent_info(request)
+
+    if FinancialTracker.objects.filter(id=current_user.id).exists():
+
+        ft = FinancialTracker.objects.get(id=current_user.id)    
+    
+        context = {
+            "id":current_user.id,
+            "ft":ft,
+            "totalspent":total_spent
+        }
+    
+        return render(request, "tracker/tracker_views.html", context)
+    else:
+
+        context = {
+            "id":current_user.id,
+            "totalspent":total_spent
+        }
+        return render(request, "tracker/tracker_views.html", context)
+
+
