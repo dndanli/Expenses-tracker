@@ -214,3 +214,22 @@ form > input{
     font-family: Montserrat,sans-serif;
 } 
 
+.expends-info{
+    margin-top: 2rem;
+    background-color: lightslategray;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.total-spent{
+    width: 14rem;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 1rem;
+}
+
+.total-spent-graph{
+    /* width: 100%; */
+    background-color:cadetblue;
+}

@@ -31,12 +31,24 @@
                         {% for item in ft.trackeritem_set.all%}
                             <tr>
                                 <td>{{item.pay_title}}</td>
-                                <td>{{item.pay_amt}}</td>
+                                <td>${{item.pay_amt}}</td>
                                 <td>{{item.pay_type}}</td>
                                 <td>{{item.pay_description}}</td>
                             </tr>
                         {% endfor %}    
                     </table>
+                </div>
+
+                <div class="expends-info">
+
+                    <div class="total-spent-graph">
+                        graph
+                    </div>
+
+                    <div class="total-spent">
+                        <h3>Total spent</h3>
+                        <h4>${{totalspent}}</h4>
+                    </div>
                 </div>
             {% endblock %}
     </div>

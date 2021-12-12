@@ -30,3 +30,12 @@ class TrackerItem(models.Model):
     def __str__(self):
         return (f"title: {self.pay_title} | amount: {self.pay_amt} | "
                 f"type: {self.pay_type} | description: {self.pay_description}")
+
+    
+
+def calculate_total_spent(id):
+    total = 0
+    items =  TrackerItem.objects.filter(tracker_id=id)
+    for i in items:
+        total += i.pay_amt
+    return total        

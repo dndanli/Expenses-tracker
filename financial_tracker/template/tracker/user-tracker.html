@@ -25,17 +25,24 @@
                 <input type="text" name="pay-title">
 
                 <label for="pay-amt" value="pay-amt">add payment amount</label>
-                <input type="text" name="pay-amt">
-
+                <input type="text" name="pay-amt" placeholder="$ 100.00">
+                
                 <label for="pay-type" value="pay-type">add payment type</label>
-                <input type="text" name="pay-type">
+
+                <br>
+                <select name="pay-type">
+                    <option value="credit">Credit Card</option>
+                    <option value="debit">Debit Card</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="checking">Checking</option>
+                </select>
 
                 <label for="pay-desc" value="pay-desc">add description</label>
                 <textarea name="pay-desc" id="pay-desc" cols="30" rows="5"></textarea>
 
                 <button type="submit" name="new-payment" value="new-payment" class="btn add">Add payment</button>
             </form>
-            <button class="btn views" ><a href="/trackerviews">Back to views</a></button>
+            <div class="btn views" ><a href="/trackerviews">Back to views</a></div>
         </div>
     </div>
     <!-- else redirect user to login page -->

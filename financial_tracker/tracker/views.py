@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import FinancialTracker
+from .models import FinancialTracker, calculate_total_spent
 from .forms import CreateNewTrackerForm
 from django.http import HttpResponseRedirect
 
@@ -45,14 +45,21 @@ def create_tracker(response, id):
         return render(response, "tracker/create.html", {"form":form})    
 
 
-
 def view_trackers(request):
     current_user = request.user
     ft = FinancialTracker.objects.get(id=current_user.id)    
+    
+    total_spent = get_total_spent_info(request)
 
     context = {
         "id":current_user.id,
-        "ft":ft
+        "ft":ft,
+        "totalspent":total_spent
     }
     
-    return render(request, "tracker/tracker_views.html",context)
+    return render(request, "tracker/tracker_views.html", context)
+
+
+def get_total_spent_info(request):
+    current_user = request.user
+    return calculate_total_spent(current_user.id)
