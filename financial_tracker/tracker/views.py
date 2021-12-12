@@ -48,9 +48,11 @@ def create_tracker(response, id):
 
 def view_trackers(request):
     current_user = request.user
+    ft = FinancialTracker.objects.get(id=current_user.id)    
 
     context = {
-        "id":current_user.id
+        "id":current_user.id,
+        "ft":ft
     }
     
     return render(request, "tracker/tracker_views.html",context)

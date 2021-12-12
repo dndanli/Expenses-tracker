@@ -15,10 +15,29 @@
         <h2>Please create a <a href="/createtracker/{{id}}">tracker</a> if you have not done so.</h2>
             {% block content %}
                 {% for tracker in user.financialtracker.all %}
-                <ul>
-                    <h2 class="tracker-name"><a href="/userhome/{{tracker.id}}">{{tracker.tracker_name}}</a></h2>
-                </ul>
+                    <h2 class="tracker-name">
+                        Click on <a href="/userhome/{{tracker.id}}">{{tracker.tracker_name}}</a> to add new payments.
+                    </h2>
                 {% endfor %}
+                <br><br>
+                <div class="table-info">
+                    <table border="1" cellpadding="10" cellspacing="15">
+                        <tr>
+                            <th>pay title</th>
+                            <th>pay amount</th>
+                            <th>pay type</th>
+                            <th>pay description</th>
+                        </tr>
+                        {% for item in ft.trackeritem_set.all%}
+                            <tr>
+                                <td>{{item.pay_title}}</td>
+                                <td>{{item.pay_amt}}</td>
+                                <td>{{item.pay_type}}</td>
+                                <td>{{item.pay_description}}</td>
+                            </tr>
+                        {% endfor %}    
+                    </table>
+                </div>
             {% endblock %}
     </div>
     {% else %}
