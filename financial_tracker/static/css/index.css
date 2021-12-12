@@ -160,7 +160,7 @@ form > input{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 .tracker-view-container a {
@@ -227,9 +227,9 @@ form > input{
     background-color: white;
     padding: 1.5rem;
     border-radius: 1rem;
+    height: 5rem;
 }
 
 .total-spent-graph{
-    /* width: 100%; */
     background-color:cadetblue;
 }

@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+import matplotlib.pyplot as plt
+import base64
+from io import BytesIO
 
 class FinancialTracker(models.Model):
     """The Financial Tracker"""
@@ -42,3 +44,41 @@ def calculate_total_spent(id):
     for i in items:
         total += i.pay_amt
     return total        
+
+def get_pay_amounts(id):
+    pay_amounts = []
+    items =  TrackerItem.objects.filter(tracker_id=id)
+    for i in items:
+        pay_amounts.append(i.pay_amt)
+    return pay_amounts        
+
+def get_db_dates(id):
+    dates = []
+    items =  TrackerItem.objects.filter(tracker_id=id)
+    for i in items:
+        dates.append(i.purchase_date)
+    return dates
+
+def get_graph():
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    image_png = buffer.getvalue()
+    graph = base64.b64encode(image_png)
+    graph = graph.decode('utf-8')
+    buffer.close() 
+    return graph
+
+
+def get_plot(x, y):
+    plt.switch_backend('AGG')
+    plt.figure(figsize=(8,5))
+    plt.title('Payment History')
+    plt.plot(x, y)
+    # plt.xticks(rotation=45)
+    plt.xlabel('Months')
+    plt.ylabel('Payments')
+    plt.tight_layout()
+    graph = get_graph()
+    return graph
+    

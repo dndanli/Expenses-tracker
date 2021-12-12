@@ -1,8 +1,7 @@
 from django.shortcuts import render
-from .models import FinancialTracker, calculate_total_spent
+from .models import FinancialTracker, calculate_total_spent, get_db_dates, get_pay_amounts, get_plot
 from .forms import CreateNewTrackerForm
 from django.http import HttpResponseRedirect
-
 
 def save_user_tracker_items(response, id):
     ft = FinancialTracker.objects.get(id=id)    
@@ -54,9 +53,14 @@ def get_total_spent_info(request):
 
 def view_trackers(request):
     current_user = request.user
-
     total_spent = get_total_spent_info(request)
+    dates = get_db_dates(current_user.id)
+    dates.sort()
+    amount_spent = get_pay_amounts(current_user.id)
+    amount_spent.sort()
+    chart = get_plot(dates, amount_spent)
 
+   
     if FinancialTracker.objects.filter(id=current_user.id).exists():
 
         ft = FinancialTracker.objects.get(id=current_user.id)    
@@ -64,7 +68,8 @@ def view_trackers(request):
         context = {
             "id":current_user.id,
             "ft":ft,
-            "totalspent":total_spent
+            "totalspent":total_spent,
+            "chart":chart
         }
     
         return render(request, "tracker/tracker_views.html", context)
@@ -72,7 +77,8 @@ def view_trackers(request):
 
         context = {
             "id":current_user.id,
-            "totalspent":total_spent
+            "totalspent":total_spent,
+            "chart":chart,  
         }
         return render(request, "tracker/tracker_views.html", context)
 

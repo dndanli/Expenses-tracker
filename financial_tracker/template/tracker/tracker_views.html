@@ -7,7 +7,7 @@
     <title>Tracker views</title>
     {% load static %}
     <script src="{% static 'js/redirect.js' %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">  
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
 </head>
 <body>
     {% if user.is_authenticated %}
@@ -44,15 +44,20 @@
                 <div class="expends-info">
 
                     <div class="total-spent-graph">
-                        graph
+                        {% if chart %}
+                            <img src="data:image/png;base64,{{chart|safe}}">
+                        {% endif %}
                     </div>
+                    
 
                     <div class="total-spent">
                         <h3>Total spent</h3>
                         <h4>${{totalspent}}</h4>
                     </div>
                 </div>
+                
             {% endblock %}
+            
     </div>
     {% else %}
         <script>

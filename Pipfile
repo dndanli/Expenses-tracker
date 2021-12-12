@@ -5,8 +5,9 @@ name = "pypi"
 
 [packages]
 django = "*"
-django-crispy-forms = "*"
-bokeh = "*"
+pandas = "*"
+numpy = "*"
+matplotlib = "*"
 
 [dev-packages]
 
