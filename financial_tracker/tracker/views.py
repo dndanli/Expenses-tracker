@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import FinancialTracker, calculate_total_spent, get_db_dates, get_expenses, get_payment_history
+from django.shortcuts import redirect, render
+from .models import FinancialTracker, TrackerItem, calculate_total_spent, get_db_dates, get_expenses, get_payment_history
 from .forms import CreateNewTrackerForm
 from django.http import HttpResponseRedirect
 
@@ -21,6 +21,12 @@ def save_user_tracker_items(response, id):
                 )
         return render(response, "tracker/user-tracker.html", {"ft":ft})
     return render(response, "tracker/tracker_views.html", {})
+
+
+def delete_tracker_items(request, items_id):
+    item_row =  TrackerItem.objects.get(id=items_id)
+    item_row.delete()
+    return redirect('/trackerviews')
 
 
 def create_tracker(response, id):

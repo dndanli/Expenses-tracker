@@ -29,6 +29,8 @@
                                 <th>pay type</th>
                                 <th>purchase date</th>
                                 <th>pay description</th>
+                                <th class="edit">edit</th>
+                                <th class="delete">delete</th>
                             </tr>
                         </thead>
                         {% for item in ft.trackeritem_set.all%}
@@ -39,6 +41,8 @@
                                 <td>{{item.pay_type}}</td>
                                 <td>{{item.purchase_date}}</td>
                                 <td>{{item.pay_description}}</td>
+                                <td><a href="#" class="edit-option">E</a></td>
+                                <td><a href="{% url 'delete-tracker-item' item.id %}" class="delete-option">X</a></td>
                             </tr>
                         </tbody>
                         {% endfor %}    

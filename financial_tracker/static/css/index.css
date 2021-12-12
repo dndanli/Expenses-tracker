@@ -212,7 +212,7 @@ form > input{
  
 .table-info{
     font-family: Montserrat,sans-serif;
-    font-size: 1.5rem;
+    font-size: 1rem;
     border-collapse: collapse;
     margin: 25px 0;
     min-width: 400px;
@@ -230,8 +230,15 @@ form > input{
     padding: 12px 15px;
 }
 
-.table-info  tbody tr {
-    border-bottom: 1px solid #dddddd;
+.delete{
+    background-color: #fc5185;
+}
+.edit{
+    background-color: #364f6b;
+}
+
+.delete-option, .edit-option{
+    text-align: center;
 }
 
 .table-info  tbody tr:last-of-type {

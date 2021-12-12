@@ -77,7 +77,6 @@ def get_payment_history(x, y):
     plt.figure(figsize=(8,5))
     plt.title('Payment History')
     plt.plot(x, y, color="#30e3ca")
-    # plt.xticks(rotation=45)
     plt.xlabel('Months')
     plt.ylabel('Payments')
     plt.tight_layout()
