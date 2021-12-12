@@ -15,9 +15,10 @@ def save_user_tracker_items(response, id):
                 new_pay_amount=response.POST.get("pay-amt")
                 new_pay_type =response.POST.get("pay-type")
                 new_pay_description=response.POST.get("pay-desc")
+                new_purchase_date = response.POST.get("purchase-date")
                 
                 ft.trackeritem_set.create(
-                    pay_title=new_pay_title, pay_amt=new_pay_amount, pay_type=new_pay_type, pay_description=new_pay_description
+                    pay_title=new_pay_title, pay_amt=new_pay_amount, pay_type=new_pay_type, pay_description=new_pay_description, purchase_date=new_purchase_date
                 )
         return render(response, "tracker/user-tracker.html", {"ft":ft})
     return render(response, "tracker/tracker_views.html", {})

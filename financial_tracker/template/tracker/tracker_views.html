@@ -26,6 +26,7 @@
                             <th>pay title</th>
                             <th>pay amount</th>
                             <th>pay type</th>
+                            <th>purchase date</th>
                             <th>pay description</th>
                         </tr>
                         {% for item in ft.trackeritem_set.all%}
@@ -33,6 +34,7 @@
                                 <td>{{item.pay_title}}</td>
                                 <td>${{item.pay_amt}}</td>
                                 <td>{{item.pay_type}}</td>
+                                <td>{{item.purchase_date}}</td>
                                 <td>{{item.pay_description}}</td>
                             </tr>
                         {% endfor %}    

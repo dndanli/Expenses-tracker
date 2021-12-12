@@ -27,10 +27,12 @@ class TrackerItem(models.Model):
     # brief description of a payment
     pay_description = models.CharField(max_length=100)
 
+    purchase_date = models.DateField(auto_now_add=False, auto_now=False)
+
 
     def __str__(self):
         return (f"title: {self.pay_title} | amount: {self.pay_amt} | "
-                f"type: {self.pay_type} | description: {self.pay_description}")
+                f"type: {self.pay_type} | description: {self.pay_description} purchase date: {self.purchase_date}")
 
     
 
