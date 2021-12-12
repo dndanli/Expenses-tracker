@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import FinancialTracker, calculate_total_spent, get_db_dates, get_pay_amounts, get_plot
+from .models import FinancialTracker, calculate_total_spent, get_db_dates, get_expenses, get_payment_history
 from .forms import CreateNewTrackerForm
 from django.http import HttpResponseRedirect
 
@@ -56,9 +56,9 @@ def view_trackers(request):
     total_spent = get_total_spent_info(request)
     dates = get_db_dates(current_user.id)
     dates.sort()
-    amount_spent = get_pay_amounts(current_user.id)
+    amount_spent = get_expenses(current_user.id)
     amount_spent.sort()
-    chart = get_plot(dates, amount_spent)
+    chart = get_payment_history(dates, amount_spent)
 
    
     if FinancialTracker.objects.filter(id=current_user.id).exists():

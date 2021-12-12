@@ -20,23 +20,27 @@
                     </h2>
                 {% endfor %}
                 <br><br>
-                <div class="table-info">
-                    <table border="1" cellpadding="10" cellspacing="15">
-                        <tr>
-                            <th>pay title</th>
-                            <th>pay amount</th>
-                            <th>pay type</th>
-                            <th>purchase date</th>
-                            <th>pay description</th>
-                        </tr>
-                        {% for item in ft.trackeritem_set.all%}
+                <div>
+                    <table class="table-info">
+                        <thead>
                             <tr>
+                                <th>pay title</th>
+                                <th>pay amount</th>
+                                <th>pay type</th>
+                                <th>purchase date</th>
+                                <th>pay description</th>
+                            </tr>
+                        </thead>
+                        {% for item in ft.trackeritem_set.all%}
+                        <tbody>
+                            <tr class="row">
                                 <td>{{item.pay_title}}</td>
                                 <td>${{item.pay_amt}}</td>
                                 <td>{{item.pay_type}}</td>
                                 <td>{{item.purchase_date}}</td>
                                 <td>{{item.pay_description}}</td>
                             </tr>
+                        </tbody>
                         {% endfor %}    
                     </table>
                 </div>

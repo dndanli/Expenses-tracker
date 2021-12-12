@@ -45,12 +45,13 @@ def calculate_total_spent(id):
         total += i.pay_amt
     return total        
 
-def get_pay_amounts(id):
+def get_expenses(id):
     pay_amounts = []
     items =  TrackerItem.objects.filter(tracker_id=id)
     for i in items:
         pay_amounts.append(i.pay_amt)
     return pay_amounts        
+
 
 def get_db_dates(id):
     dates = []
@@ -58,6 +59,7 @@ def get_db_dates(id):
     for i in items:
         dates.append(i.purchase_date)
     return dates
+
 
 def get_graph():
     buffer = BytesIO()
@@ -70,15 +72,14 @@ def get_graph():
     return graph
 
 
-def get_plot(x, y):
+def get_payment_history(x, y):
     plt.switch_backend('AGG')
     plt.figure(figsize=(8,5))
     plt.title('Payment History')
-    plt.plot(x, y)
+    plt.plot(x, y, color="#30e3ca")
     # plt.xticks(rotation=45)
     plt.xlabel('Months')
     plt.ylabel('Payments')
     plt.tight_layout()
     graph = get_graph()
     return graph
-    

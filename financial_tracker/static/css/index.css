@@ -212,7 +212,32 @@ form > input{
  
 .table-info{
     font-family: Montserrat,sans-serif;
+    font-size: 1.5rem;
+    border-collapse: collapse;
+    margin: 25px 0;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 } 
+
+.table-info thead tr{
+    background-color: var(--bg-color-primary);
+    color: #ffffff;
+    text-align: left;
+}
+
+.table-info th,
+.table-info td {
+    padding: 12px 15px;
+}
+
+.table-info  tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.table-info  tbody tr:last-of-type {
+    border-bottom: 2px solid var(--bg-color-primary);
+}
+
 
 .expends-info{
     margin-top: 2rem;
@@ -230,6 +255,6 @@ form > input{
     height: 5rem;
 }
 
-.total-spent-graph{
+/* .total-spent-graph{
     background-color:cadetblue;
-}
+} */
