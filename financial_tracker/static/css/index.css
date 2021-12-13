@@ -188,7 +188,7 @@ form > input{
     margin-left: .5rem;    
 }
 
-.user-tracker-container{
+.user-tracker-container, .edit-tracker-items-container{
     font-family: Montserrat,sans-serif ;
     background: rgb(255, 254, 252);
     padding: 5rem 10rem 5rem 10rem;
@@ -237,8 +237,13 @@ form > input{
     background-color: #364f6b;
 }
 
-.delete-option, .edit-option{
+/* .delete-option,
+.edit-option{
     text-align: center;
+} */
+
+.edit-option, a{
+    color: #364f6b;
 }
 
 .table-info  tbody tr:last-of-type {
@@ -261,7 +266,3 @@ form > input{
     border-radius: 1rem;
     height: 5rem;
 }
-
-/* .total-spent-graph{
-    background-color:cadetblue;
-} */
