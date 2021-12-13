@@ -15,24 +15,54 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='FinancialTracker',
+            name="FinancialTracker",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('tracker_name', models.CharField(max_length=30)),
-                ('tracker_user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='financialtracker', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("tracker_name", models.CharField(max_length=30)),
+                (
+                    "tracker_user",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="financialtracker",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='TrackerItem',
+            name="TrackerItem",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('pay_title', models.CharField(max_length=25)),
-                ('pay_amt', models.DecimalField(decimal_places=2, max_digits=6)),
-                ('pay_type', models.CharField(max_length=25)),
-                ('category', models.CharField(max_length=25)),
-                ('pay_description', models.CharField(max_length=100)),
-                ('purchase_date', models.DateField()),
-                ('tracker', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='tracker.financialtracker')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("pay_title", models.CharField(max_length=25)),
+                ("pay_amt", models.DecimalField(decimal_places=2, max_digits=6)),
+                ("pay_type", models.CharField(max_length=25)),
+                ("category", models.CharField(max_length=25)),
+                ("pay_description", models.CharField(max_length=100)),
+                ("purchase_date", models.DateField()),
+                (
+                    "tracker",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="tracker.financialtracker",
+                    ),
+                ),
             ],
         ),
     ]
