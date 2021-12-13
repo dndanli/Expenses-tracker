@@ -5,9 +5,8 @@ name = "pypi"
 
 [packages]
 django = "*"
-pandas = "*"
-numpy = "*"
 matplotlib = "*"
+black = "*"
 
 [dev-packages]
 
