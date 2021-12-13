@@ -26,6 +26,8 @@ class TrackerItem(models.Model):
     # type of payment made
     pay_type = models.CharField(max_length=25)
 
+    category = models.CharField(max_length=25)
+
     # brief description of a payment
     pay_description = models.CharField(max_length=100)
 
@@ -34,7 +36,7 @@ class TrackerItem(models.Model):
 
     def __str__(self):
         return (f"title: {self.pay_title} | amount: {self.pay_amt} | "
-                f"type: {self.pay_type} | description: {self.pay_description} purchase date: {self.purchase_date}")
+                f"type: {self.pay_type} | description: {self.pay_description} purchase date: {self.purchase_date} category {self.category}")
 
     
 
@@ -61,6 +63,22 @@ def get_db_dates(id):
     return dates
 
 
+def get_categories_for_current_user(id):
+    items =  TrackerItem.objects.filter(tracker_id=id)
+    categories = []
+    for item in items:
+        categories.append(item.category)
+    return categories
+
+
+def get_category_count(categories_list, category_query):
+    category_count = 0
+    for category in categories_list:
+            if category == category_query:
+                category_count +=1
+    return category_count
+
+
 def get_graph():
     buffer = BytesIO()
     plt.savefig(buffer, format='png')
@@ -72,7 +90,7 @@ def get_graph():
     return graph
 
 
-def get_payment_history(x, y):
+def get_payment_history_plot(x, y):
     plt.switch_backend('AGG')
     plt.figure(figsize=(8,5))
     plt.title('Payment History')
@@ -81,5 +99,17 @@ def get_payment_history(x, y):
     plt.xlabel('Months')
     plt.ylabel('Payments')
     plt.tight_layout()
+    graph = get_graph()
+    return graph
+
+def get_category_spending_plot(categories, category_counts):
+    plt.switch_backend('AGG')
+    plt.figure(figsize=(8,5))
+    plt.title('Payment History')
+    # print('the categories')
+    print(categories)
+    fig1, ax1 = plt.subplots()
+    ax1.pie(category_counts,labels=categories, autopct='%1.1f%%', startangle=90)
+    ax1.axis('equal') 
     graph = get_graph()
     return graph

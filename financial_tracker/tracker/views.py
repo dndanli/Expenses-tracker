@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from .models import FinancialTracker, TrackerItem, calculate_total_spent, get_db_dates, get_expenses, get_payment_history
+from .models import FinancialTracker, TrackerItem, calculate_total_spent, get_db_dates, get_expenses, get_payment_history_plot, get_category_spending_plot, get_categories_for_current_user, get_category_count
 from .forms import CreateNewTrackerForm
 from django.http import HttpResponseRedirect
 
@@ -15,9 +15,10 @@ def save_user_tracker_items(response, id):
                 new_pay_type =response.POST.get("pay-type")
                 new_pay_description=response.POST.get("pay-desc")
                 new_purchase_date = response.POST.get("purchase-date")
+                new_category = response.POST.get("category")
                 
                 ft.trackeritem_set.create(
-                    pay_title=new_pay_title, pay_amt=new_pay_amount, pay_type=new_pay_type, pay_description=new_pay_description, purchase_date=new_purchase_date
+                    pay_title=new_pay_title, pay_amt=new_pay_amount, pay_type=new_pay_type, pay_description=new_pay_description, purchase_date=new_purchase_date,category=new_category
                 )
         return render(response, "tracker/user-tracker.html", {"ft":ft})
     return render(response, "tracker/tracker_views.html", {})
@@ -45,6 +46,7 @@ def save_edited_items(request, item_row):
             item_row.pay_type = request.POST.get("pay-type")
             item_row.pay_description = request.POST.get("pay-desc")
             item_row.purchase_date = request.POST.get("purchase-date")
+            item_row.category = request.POST.get("category")
             item_row.save()
         return redirect('/trackerviews')
     
@@ -78,15 +80,37 @@ def get_total_spent_info(request):
 
 
 def view_trackers(request):
+    # the current logged user
     current_user = request.user
+
+    # total of how much has spent
     total_spent = get_total_spent_info(request)
+
+    # user purchase dates
     dates = get_db_dates(current_user.id)
+
+    # each user expense
     amount_spent = get_expenses(current_user.id)
+
+    # payment history chart
     chart = ""
+
+    # if there are dates and a track of money spent
     if len(dates) > 0 and len(amount_spent)>0:
-        # if there is data then unpack for the graph
+
+        # then unpack for the graph
         dates, amount_spent = zip(*sorted(zip(dates, amount_spent)))
-        chart = get_payment_history(dates, amount_spent)
+        chart = get_payment_history_plot(dates, amount_spent)
+
+        # prepare data for pie chart
+        categories = get_categories_for_current_user(current_user.id)
+        filtered_categories = {}
+        
+        for i in categories:
+            category_count = get_category_count(categories, i)
+            filtered_categories.update({i: category_count})
+        
+        pie_chart = get_category_spending_plot(filtered_categories.keys(), filtered_categories.values())        
 
     if FinancialTracker.objects.filter(id=current_user.id).exists():
 
@@ -96,7 +120,8 @@ def view_trackers(request):
             "id":current_user.id,
             "ft":ft,
             "totalspent":total_spent,
-            "chart":chart
+            "chart":chart,
+            "piechart": pie_chart
         }
     
         return render(request, "tracker/tracker_views.html", context)

@@ -29,15 +29,25 @@
                     <br>
                     <select name="pay-type">
                         <option value="{{itemrow.pay_type}}">{{itemrow.pay_type}}</option>
-                        <option value="credit">Credit Card</option>
-                        <option value="debit">Debit Card</option>
-                        <option value="paypal">PayPal</option>
-                        <option value="checking">Checking</option>
+                        <option value="Credit Card">Credit Card</option>
+                        <option value="Debit Card">Debit Card</option>
+                        <option value="PayPal">PayPal</option>
+                        <option value="Checking">Checking</option>
                     </select>
                     
                     <label for="purchase-date" value='purchase-date'>edit purchase date</label>
                     <input type="date" id="purchase_date" name="purchase-date"value="{{itemrow.purchase_date|date:'Y-m-d'}}"min="2021-01-01" max="2021-12-31">
     
+                    <select name="category">
+                        <option value="{{itemrow.category}}">{{itemrow.category}}</option>
+                        <option value="Food & Dining">Food & Dining</option>
+                        <option value="Health & Fitness">Health & Fitness</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Shopping">Shopping</option>
+                        <option value="Auto & Transport">Auto & Transport</option>
+                        <option value="Other">Other</option>
+                    </select>
+
                     <label for="pay-desc" value="pay-desc">edit description</label>
                     <textarea name="pay-desc" id="pay-desc" cols="30" rows="5">{{itemrow.pay_description}}</textarea>
     

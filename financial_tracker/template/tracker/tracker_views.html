@@ -28,6 +28,7 @@
                                 <th>pay amount</th>
                                 <th>pay type</th>
                                 <th>purchase date</th>
+                                <th>pay category</th>
                                 <th>pay description</th>
                                 <th class="edit">edit</th>
                                 <th class="delete">delete</th>
@@ -40,6 +41,7 @@
                                 <td>${{item.pay_amt}}</td>
                                 <td>{{item.pay_type}}</td>
                                 <td>{{item.purchase_date}}</td>
+                                <td>{{item.category}}</td>
                                 <td>{{item.pay_description}}</td>
                                 <td><a href="{% url 'edit-tracker-items' item.id%}" class="edit-option" style="color: #364f6b">E</a></td>
                                 <td><a href="{% url 'delete-tracker-item' item.id %}" class="delete-option" style="color:lightcoral">X</a></td>
@@ -59,6 +61,12 @@
                         <img src="data:image/png;base64,{{chart|safe}}">
                     {% endif %}
                 </div>   
+
+                <div class="category-chart">
+                    {% if piechart %}
+                        <img src="data:image/png;base64,{{piechart|safe}}">
+                    {% endif %}
+                </div>
                 
             {% endblock %}
             
