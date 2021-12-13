@@ -29,6 +29,26 @@ def delete_tracker_items(request, items_id):
     return redirect('/trackerviews')
 
 
+def edit_items(request, items_id):
+    # get the items_row on from database
+    item_row =  TrackerItem.objects.get(id=items_id)
+    save_edited_items(request, item_row)
+    return render(request, 'tracker/edit-items.html', {"itemrow":item_row})
+
+
+def save_edited_items(request, item_row):
+    if request.method == 'POST':
+        if request.POST.get("edited-payment"):                    
+            # get form info
+            item_row.pay_title = request.POST.get("pay-title")
+            item_row.pay_amt = request.POST.get("pay-amt")
+            item_row.pay_type = request.POST.get("pay-type")
+            item_row.pay_description = request.POST.get("pay-desc")
+            item_row.purchase_date = request.POST.get("purchase-date")
+            item_row.save()
+        return redirect('/trackerviews')
+    
+
 def create_tracker(response, id):
     
     if FinancialTracker.objects.filter(tracker_user_id=id).exists():
@@ -88,3 +108,4 @@ def view_trackers(request):
             "chart":chart,  
         }
         return render(request, "tracker/tracker_views.html", context)
+

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>edit</title>
+    {% load static %}
+    <script src="{% static 'js/redirect.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <div class="edit-container">
+            {% block content %}
+            <div class="edit-tracker-items-container">
+                <h2>Edit a payment</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{form}}
+                    <label for="title" value="title">edit payment title</label>
+                    <input type="text" name="pay-title" value="{{itemrow.pay_title}}">
+
+                    <label for="pay-amt" value="pay-amt">edit payment amount</label>
+                    <input type="text" name="pay-amt" placeholder="$ 100.00" value="{{itemrow.pay_amt}}">
+                    
+                    <label for="pay-type" value="pay-type">edit payment type</label>
+    
+                    <br>
+                    <select name="pay-type">
+                        <option value="{{itemrow.pay_type}}">{{itemrow.pay_type}}</option>
+                        <option value="credit">Credit Card</option>
+                        <option value="debit">Debit Card</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="checking">Checking</option>
+                    </select>
+                    
+                    <label for="purchase-date" value='purchase-date'>edit purchase date</label>
+                    <input type="date" id="start" name="purchase-date"value="{{itemrow.purchase_date}}"min="2021-01-01" max="2021-12-31">
+    
+                    <label for="pay-desc" value="pay-desc">edit description</label>
+                    <textarea name="pay-desc" id="pay-desc" cols="30" rows="5">{{itemrow.pay_description}}</textarea>
+    
+                    <button type="submit" name="edited-payment" value="edited-payment" class="btn add">Update payment</button>
+                </form>
+                <div class="btn views" ><a href="/trackerviews">Back to views</a></div>
+            </div>            
+            {% endblock %}
+        </div>
+    {% else %}
+        <script>
+            redirect('/login');
+        </script>
+    {% endif %}
+</body>
+</html>
