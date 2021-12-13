@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
 :root{
-    --bg-color-primary:#30e3ca;
+    --bg-color-primary:#3ad3be;
     --text-color-primary:rgb(255, 254, 252);
     --text-color-secondary: #1c1c1f;
 }
@@ -18,7 +18,7 @@ html{
     height: 100%;
 }
 body{
-    background-color: #b8c6db;
+    background-color: #1c1c1f;
     /* background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%); */
 }
 
@@ -237,11 +237,6 @@ form > input{
     background-color: #364f6b;
 }
 
-/* .delete-option,
-.edit-option{
-    text-align: center;
-} */
-
 .edit-option, a{
     color: #364f6b;
 }
@@ -250,19 +245,16 @@ form > input{
     border-bottom: 2px solid var(--bg-color-primary);
 }
 
-
-.expends-info{
-    margin-top: 2rem;
-    background-color: lightslategray;
-    padding: 2rem;
-    display: flex;
-    justify-content: space-evenly;
-}
-
 .total-spent{
     width: 14rem;
-    background-color: white;
+    margin-top: 2rem;
+    background-color: #fc5185;
+    color: var(--text-color-primary);
     padding: 1.5rem;
     border-radius: 1rem;
     height: 5rem;
+}
+
+.payment-history-graph{
+    margin-top: 3rem;
 }

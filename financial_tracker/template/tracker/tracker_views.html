@@ -54,14 +54,11 @@
                     <h4>${{totalspent}}</h4>
                 </div>
 
-                <div class="expends-info">
-
-                    <div class="total-spent-graph">
-                        {% if chart %}
-                            <img src="data:image/png;base64,{{chart|safe}}">
-                        {% endif %}
-                    </div>   
-                </div>
+                <div class="payment-history-graph">
+                    {% if chart %}
+                        <img src="data:image/png;base64,{{chart|safe}}">
+                    {% endif %}
+                </div>   
                 
             {% endblock %}
             

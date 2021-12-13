@@ -36,7 +36,7 @@
                     </select>
                     
                     <label for="purchase-date" value='purchase-date'>edit purchase date</label>
-                    <input type="date" id="start" name="purchase-date"value="{{itemrow.purchase_date}}"min="2021-01-01" max="2021-12-31">
+                    <input type="date" id="purchase_date" name="purchase-date"value="{{itemrow.purchase_date|date:'Y-m-d'}}"min="2021-01-01" max="2021-12-31">
     
                     <label for="pay-desc" value="pay-desc">edit description</label>
                     <textarea name="pay-desc" id="pay-desc" cols="30" rows="5">{{itemrow.pay_description}}</textarea>
