@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 
 
 def registerUser(response):
-    # if there is a post request and form is valid
+    """This function register an user"""
     if response.method == "POST":
         form = RegistrationForm(response.POST)
         if form.is_valid():

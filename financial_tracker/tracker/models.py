@@ -47,6 +47,7 @@ class TrackerItem(models.Model):
 
 
 def calculate_total_spent(id):
+    """This function calculates the total money a user has spent"""
     total = 0
     items = TrackerItem.objects.filter(tracker_id=id)
     for i in items:
@@ -55,6 +56,7 @@ def calculate_total_spent(id):
 
 
 def get_expenses(id):
+    """this function gets the expenses from an user"""
     pay_amounts = []
     items = TrackerItem.objects.filter(tracker_id=id)
     for i in items:
@@ -63,6 +65,7 @@ def get_expenses(id):
 
 
 def get_db_dates(id):
+    """this function gets the database dates"""
     dates = []
     items = TrackerItem.objects.filter(tracker_id=id)
     for i in items:
@@ -71,6 +74,7 @@ def get_db_dates(id):
 
 
 def get_categories_for_current_user(id):
+    """this function gets the categories each user spends money on"""
     items = TrackerItem.objects.filter(tracker_id=id)
     categories = []
     for item in items:
@@ -79,6 +83,7 @@ def get_categories_for_current_user(id):
 
 
 def get_category_count(categories_list, category_query):
+    """this function gets the category count for each user"""
     category_count = 0
     for category in categories_list:
         if category == category_query:
@@ -87,6 +92,7 @@ def get_category_count(categories_list, category_query):
 
 
 def get_graph():
+    """this is a helper function to map matplotlib to the html"""
     buffer = BytesIO()
     plt.savefig(buffer, format="png")
     buffer.seek(0)
@@ -98,6 +104,7 @@ def get_graph():
 
 
 def get_payment_history_plot(x, y):
+    """this function graphs the payment history"""
     plt.switch_backend("AGG")
     plt.figure(figsize=(8, 5))
     plt.title("Payment History")
@@ -111,6 +118,7 @@ def get_payment_history_plot(x, y):
 
 
 def get_category_spending_plot(categories, category_counts):
+    """this function graphs the pie chart of categories"""
     plt.switch_backend("AGG")
     plt.figure(figsize=(8, 5))
     plt.title("Payment History")

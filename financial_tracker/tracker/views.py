@@ -68,11 +68,14 @@ def save_edited_items(request, item_row):
 
 
 def create_tracker(response, id):
+    """This function creates a tracker"""
 
+    # if the tracker was created
     if FinancialTracker.objects.filter(tracker_user_id=id).exists():
-        """user cannot create more trackers"""
+        # user cannot create more than one tracker"""
         return HttpResponseRedirect("/trackerviews/")
     else:
+        # if its a post method then save the tracker
         if response.method == "POST":
             form = CreateNewTrackerForm(response.POST)
 
@@ -82,19 +85,21 @@ def create_tracker(response, id):
                 new_financial_tracker.save()
                 response.user.financialtracker.add(new_financial_tracker)
 
+            # return based on an id
             return HttpResponseRedirect("/userhome/%i" % new_financial_tracker.id)
         else:
-            # if get the just create the new tracker
             form = CreateNewTrackerForm()
         return render(response, "tracker/create.html", {"form": form})
 
 
 def get_total_spent_info(request):
+    """This function gets how much the user has spent"""
     current_user = request.user
     return calculate_total_spent(current_user.id)
 
 
 def view_trackers(request):
+    """The view to see the tracker information"""
     # the current logged user
     current_user = request.user
 
@@ -111,7 +116,7 @@ def view_trackers(request):
     chart = ""
 
     pie_chart = ""
-    # if there are dates and a track of money spent
+    # if there are dates and money spent into a tracker
     if len(dates) > 0 and len(amount_spent) > 0:
 
         # then unpack for the graph
@@ -122,14 +127,17 @@ def view_trackers(request):
         categories = get_categories_for_current_user(current_user.id)
         filtered_categories = {}
 
+        # putting categories and their count into a dictionary
         for i in categories:
             category_count = get_category_count(categories, i)
             filtered_categories.update({i: category_count})
 
+        # creating the pie chart
         pie_chart = get_category_spending_plot(
             filtered_categories.keys(), filtered_categories.values()
         )
 
+    # if there are objects for the user then display the graphs
     if FinancialTracker.objects.filter(id=current_user.id).exists():
 
         ft = FinancialTracker.objects.get(id=current_user.id)
