@@ -110,6 +110,7 @@ def view_trackers(request):
     # payment history chart
     chart = ""
 
+    pie_chart = ""
     # if there are dates and a track of money spent
     if len(dates) > 0 and len(amount_spent) > 0:
 

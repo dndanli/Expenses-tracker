@@ -6,7 +6,9 @@
     --text-color-primary:rgb(255, 254, 252);
     --text-color-secondary: #1c1c1f;
 }
-
+a{
+    text-decoration: none;
+}
 /* reset*/
 *{
     margin: 0;
