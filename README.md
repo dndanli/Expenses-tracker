@@ -24,7 +24,7 @@
 ### Python 3.7
 ### Numpy
 ### Matplotlib
-### SQLite
+### SQLite3
 
 ## Screenshots
 ![sc1](https://user-images.githubusercontent.com/73452073/145760012-3e911f38-255e-4bc6-a3c7-1b18d5898bb1.png)
