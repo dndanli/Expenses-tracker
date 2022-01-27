@@ -4,27 +4,24 @@
 
 <!-- ## Dependencies -->
 
-## Install Pipenv to manage the virtual environment
-## Basic usage: https://pipenv-fork.readthedocs.io/en/latest/basics.html
+## Install Pipenv to manage the virtual environment  
+Basic usage: https://pipenv-fork.readthedocs.io/en/latest/basics.html
 
-## Install pipenv with pip
+## Install Pipenv with pip
 `pip install pipenv`
 ## Download dependencies from Pipfile
 `pipenv install`
 ## Activate the virtual environment
-`pipenv shell`
-
-## Change directory to the same level as manage.py 
-## Execute the django server
-`python manage.py runserver`
-
+`pipenv shell`  
+Change directory to the same level as manage.py    
+Execute the django server `python manage.py runserver`  
 
 ## Dependencies
-### Black for pep8 format
-### Python 3.7
-### Numpy
-### Matplotlib
-### SQLite3
+1. Black for pep8 format  
+2. Python 3.7  
+3. Numpy  
+4. Matplotlib  
+5. SQLite3  
 
 ## Screenshots
 ![sc1](https://user-images.githubusercontent.com/73452073/145760012-3e911f38-255e-4bc6-a3c7-1b18d5898bb1.png)
