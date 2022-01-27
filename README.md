@@ -1,4 +1,4 @@
-# Financial-tracker
+# Expenses-tracker
 ## Clone the project
 `git clone https://github.com/dndanli/Financial-tracker.git`
 
